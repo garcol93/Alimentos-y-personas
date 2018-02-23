@@ -64,5 +64,27 @@ public class Persona
     {
         return caloriasIngeridas;
     }
-    
+
+    /**
+     * metodo preguntar si la pregunta contiene el nombre o ya ha comido demasiado 
+     * responde con la pregunta en mayus 
+     * si la pregunta es divisible entre 3 dice "SI" si no "NO"
+     */
+    public String contestar(String pregunta)
+    {
+        String respuesta =""; 
+        if(caloriasIngeridas >= metabolismoBasal || pregunta.contains(nombre))
+        {
+            respuesta = pregunta.toUpperCase();
+        }
+        else{
+            if(pregunta.length()%3 == 0){
+                respuesta= "SI";
+            }
+            else{
+                respuesta ="NO";
+            }
+        }
+        return respuesta;
+    }
 }
