@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Persona here.
  * 
@@ -21,7 +21,8 @@ public class Persona
     private int caloriasIngeridas;
     //metabolismo basal
     private int metabolismoBasal;
-
+    //comidas ingeridas
+    private ArrayList<Comida> comidasTomadas;
     /**
      * Constructor for objects of class Persona
      */
@@ -33,7 +34,8 @@ public class Persona
         this.kg = kg;
         this.cm = alturaCm;
         this.edad = edad;
-        caloriasIngeridas = 0;       
+        caloriasIngeridas = 0;  
+        comidasTomadas = new ArrayList<>();
         if(hombre)
         {
             metabolismoBasal = (10*kg)+(6*cm)+(5*edad)+5;
@@ -53,6 +55,7 @@ public class Persona
         {
             devolver = comida.getCalorias();
             caloriasIngeridas += comida.getCalorias();
+            comidasTomadas.add(comida);
         }        
         return devolver;
     }
@@ -85,6 +88,30 @@ public class Persona
                 respuesta ="NO";
             }
         }
+        System.out.println(respuesta);
         return respuesta;
+    }
+
+    /**
+     * devuelve el alimento mas calorico consumido hasta el momento si no se a consumido 
+     * nada devuelve null
+     */
+    public String getAlimentoMasCaloricoConsumido()
+    {
+        String devolver= null;
+        if(0<comidasTomadas.size())
+        {
+            Comida comidaMayor = comidasTomadas.get(0);
+            for(int i=0; i<comidasTomadas.size();i++)
+            {       
+                if(comidaMayor.getCalorias() <= comidasTomadas.get(i).getCalorias())
+                {
+                    comidaMayor = comidasTomadas.get(i);
+                }
+            }
+            devolver = comidaMayor.getNombreComida();
+            System.out.println(devolver);
+        }
+        return devolver;
     }
 }

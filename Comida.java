@@ -28,4 +28,12 @@ public class Comida
     {
         return calorias;
     }
+
+    /**
+     * devuelve nombre comida
+     */
+    public String getNombreComida()
+    {
+        return nombreComida;
+    }
 }
